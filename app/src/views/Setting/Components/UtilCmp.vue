@@ -48,36 +48,3 @@ import CustomSwitch from '@/components/CustomSwitch.vue'
 
 const lock = ref(false)
 </script>
-
-<style lang="scss" scoped>
-.box {
-    margin-top: 20px;
-    background-color: #ffffff;
-}
-
-.item {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    vertical-align: middle;
-    border-bottom: 1px solid #f7f7f7;
-    &:last-child {
-        border-bottom: none;
-    }
-
-    .icon {
-        font-size: 24px;
-        vertical-align: middle;
-    }
-    &-text {
-        vertical-align: middle;
-        font-size: 18px;
-        margin-left: 4px;
-    }
-}
-
-.arrow {
-    transform: rotate(180deg);
-}
-</style>

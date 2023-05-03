@@ -35,53 +35,5 @@ import HomeConfig from './Components/HomeConfig.vue'
 import OtherCmp from './Components/OtherCmp.vue'
 </script>
 <style lang="scss" scoped>
-.setting-wrapper {
-    padding: 10px 20px;
-}
-
-.app-info {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    .tip {
-        font-size: 16px;
-        text-align: center;
-        line-height: 1.5;
-    }
-
-    .logo {
-        width: 50px;
-        height: 50px;
-    }
-
-    .app-version {
-        margin-top: 20px;
-        font-size: 12px;
-        color: #d3d3d3;
-    }
-
-    .check {
-        margin-top: 1xc0px;
-        font-size: 12px;
-        color: #74c193;
-    }
-
-    .logout {
-        width: 60%;
-        text-align: center;
-        color: #74c193;
-        border: 1px solid #74c193;
-        padding: 10px 0;
-        font-size: 20px;
-        margin-bottom: 50px;
-    }
-
-    .actions {
-        font-size: 14px;
-        color: #616161;
-    }
-}
+@import '@/assets/styles/setting.scss';
 </style>

@@ -82,35 +82,3 @@ import CustomSwitch from '@/components/CustomSwitch.vue'
 const homeEventEntry = ref(false)
 const editEventEntry = ref(false)
 </script>
-
-<style lang="scss" scoped>
-.title {
-    margin-top: 20px;
-    font-size: 14px;
-    margin-bottom: 5px;
-    color: #898989;
-}
-.box {
-    background-color: #ffffff;
-}
-
-.item {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    vertical-align: middle;
-    border-bottom: 1px solid #f7f7f7;
-    &:last-child {
-        border-bottom: none;
-    }
-
-    &-text {
-        font-size: 18px;
-    }
-}
-
-.arrow {
-    transform: rotate(180deg);
-}
-</style>
