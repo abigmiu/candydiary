@@ -7,6 +7,11 @@ const router = createRouter({
             path: '/setting',
             name: 'Setting',
             component: () => import('@/views/Setting/SettingIndex.vue')
+        },
+        {
+            path: '/account',
+            name: 'Account',
+            component: () => import('@/views/Account/AccountPage.vue')
         }
     ]
 })
