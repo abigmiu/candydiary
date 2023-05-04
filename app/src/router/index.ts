@@ -12,6 +12,11 @@ const router = createRouter({
             path: '/account',
             name: 'Account',
             component: () => import('@/views/Account/AccountPage.vue')
+        },
+        {
+            path: '/combo',
+            name: 'Combo',
+            component: () => import('@/views/Combo/ComboPage.vue')
         }
     ]
 })
