@@ -21,16 +21,16 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue';
 
 interface IMenu {
-    text: string
-    active: boolean
-    icon: boolean
-    id: number
+    text: string;
+    active: boolean;
+    icon: boolean;
+    id: number;
 }
 
-let preActiveIndex = 0
+let preActiveIndex = 0;
 const menus = reactive<IMenu[]>([
     {
         text: '时间轴',
@@ -56,28 +56,28 @@ const menus = reactive<IMenu[]>([
         id: 4,
         active: false
     }
-])
+]);
 const onChangeMenu = (index: number) => {
     menus.forEach((item) => {
-        item.active = false
-    })
-    getMenuItemBoundClientRect(index)
-    menus[index].active = true
-}
+        item.active = false;
+    });
+    getMenuItemBoundClientRect(index);
+    menus[index].active = true;
+};
 
 const cursorStyle = reactive({
     left: '0px',
     width: '0px'
-})
-const listItemRef = ref<HTMLDivElement[]>()
+});
+const listItemRef = ref<HTMLDivElement[]>();
 const getMenuItemBoundClientRect = (index: number) => {
-    const rect = listItemRef.value![index].getBoundingClientRect()
-    cursorStyle.left = rect.left + 'px'
-    cursorStyle.width = rect.width + 'px'
-}
+    const rect = listItemRef.value![index].getBoundingClientRect();
+    cursorStyle.left = rect.left + 'px';
+    cursorStyle.width = rect.width + 'px';
+};
 onMounted(() => {
-    getMenuItemBoundClientRect(0)
-})
+    getMenuItemBoundClientRect(0);
+});
 </script>
 
 <style lang="scss" scoped>
@@ -104,6 +104,7 @@ $itemIndex: $cursorIndex + 1;
     overflow: hidden;
 
     &-item {
+        display: block;
         padding: 2px 15px;
         border-radius: $radius;
         z-index: $itemIndex;

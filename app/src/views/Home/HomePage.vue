@@ -1,23 +1,31 @@
 <template>
+    <HomeCalendar></HomeCalendar>
     <NavBar></NavBar>
-    <CardItem></CardItem>
-    <CardItem></CardItem>
-    <CardItem></CardItem>
-    <CardItem></CardItem>
-    <CardItem></CardItem>
-    <CardItem></CardItem>
-    <CardItem></CardItem>
+    <div class="list">
+        <CardItem></CardItem>
+        <CardItem></CardItem>
+        <CardItem></CardItem>
+        <CardItem></CardItem>
+        <CardItem></CardItem>
+        <CardItem></CardItem>
+        <CardItem></CardItem>
 
-    <CardItem></CardItem>
-    <CardItem></CardItem>
-    <CardItem></CardItem>
-    <CardItem></CardItem>
-    <CardItem></CardItem>
+        <CardItem></CardItem>
+        <CardItem></CardItem>
+        <CardItem></CardItem>
+        <CardItem></CardItem>
+        <CardItem></CardItem>
+    </div>
 </template>
 
 <script lang="ts" setup>
-import NavBar from './Components/NavBar.vue'
-import CardItem from './Components/CardItem.vue'
+import NavBar from './Components/NavBar.vue';
+import CardItem from './Components/CardItem.vue';
+import HomeCalendar from './Components/HomeCalendar.vue';
 </script>
 
-<style scoped></style>
+<style scoped>
+.list {
+    padding: 0 10px;
+}
+</style>

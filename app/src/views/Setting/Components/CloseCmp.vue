@@ -1,7 +1,15 @@
 <!-- 关闭按钮 -->
 <template>
-    <div class="close-wrapper"></div>
+    <div class="close-wrapper" @click="onBack"></div>
 </template>
+<script setup lang="ts">
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
+const onBack = () => {
+    router.back();
+};
+</script>
 <style lang="scss" scoped>
 .close-wrapper {
     position: sticky;
@@ -11,6 +19,7 @@
     margin-bottom: 10px;
     background-color: rgba(#cccccc, 1);
     border-radius: 50%;
+    z-index: 1;
 
     &::before,
     &::after {
