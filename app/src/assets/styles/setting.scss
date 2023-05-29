@@ -13,6 +13,7 @@
     .icon {
         font-size: 24px;
         vertical-align: middle;
+        margin-right: 10px;
     }
     .box {
         background-color: #ffffff;
@@ -32,10 +33,32 @@
 
         &-text {
             font-size: 18px;
+            vertical-align: middle;
         }
     }
 
     .arrow {
         transform: rotate(180deg);
+    }
+}
+
+// 账号设置页
+.account-page {
+    font-size: 16px;
+    color: #4c4b4b;
+    .item {
+        padding: 10px 20px;
+    }
+}
+// 编辑资料
+.edit-info {
+    .item {
+        padding: 10px 20px;
+    }
+    .avatar {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        border-radius: 50%;
     }
 }

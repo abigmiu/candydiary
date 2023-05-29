@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,11 +19,16 @@ const router = createRouter({
             component: () => import('@/views/Account/AccountPage.vue')
         },
         {
+            path: '/account-edit',
+            name: 'Account.Edit',
+            component: () => import('@/views/Account/EditInfo.vue')
+        },
+        {
             path: '/combo',
             name: 'Combo',
             component: () => import('@/views/Combo/ComboPage.vue')
         }
     ]
-})
+});
 
-export default router
+export default router;

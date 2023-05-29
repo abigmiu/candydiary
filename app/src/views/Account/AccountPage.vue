@@ -1,15 +1,14 @@
 <template>
     <NavigationCmp title="账号设置"></NavigationCmp>
 
-    <div class="setting-wrapper">
+    <div class="setting-wrapper account-page">
         <div class="box"></div>
-        <div class="item">
+        <div class="item flex items-center" @click="onJumpEditInfo">
             <div class="left">编辑用户信息</div>
-            <div class="right">
-                <Icon class="arrow">
-                    <ArrowBackIosFilled></ArrowBackIosFilled>
-                </Icon>
-            </div>
+
+            <Icon class="arrow">
+                <ArrowBackIosFilled></ArrowBackIosFilled>
+            </Icon>
         </div>
 
         <div>
@@ -30,9 +29,18 @@
     </div>
 </template>
 <script setup lang="ts">
-import { ArrowBackIosFilled } from '@vicons/material'
-import { Icon } from '@vicons/utils'
-import NavigationCmp from '@/components/NavigationCmp.vue'
+import { ArrowBackIosFilled } from '@vicons/material';
+import { Icon } from '@vicons/utils';
+import NavigationCmp from '@/components/NavigationCmp.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const onJumpEditInfo = () => {
+    router.push({
+        name: 'Account.Edit'
+    });
+};
 </script>
 <style lang="scss">
 @import '@/assets/styles/setting.scss';
