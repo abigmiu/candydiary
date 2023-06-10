@@ -64,7 +64,7 @@ const onChangeMenu = (index: number) => {
     getMenuItemBoundClientRect(index);
     menus[index].active = true;
 };
-
+// 优化这里的代码
 const cursorStyle = reactive({
     left: '0px',
     width: '0px'

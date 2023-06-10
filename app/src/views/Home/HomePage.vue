@@ -1,20 +1,22 @@
 <template>
-    <HomeCalendar></HomeCalendar>
-    <NavBar></NavBar>
-    <div class="list">
-        <CardItem></CardItem>
-        <CardItem></CardItem>
-        <CardItem></CardItem>
-        <CardItem></CardItem>
-        <CardItem></CardItem>
-        <CardItem></CardItem>
-        <CardItem></CardItem>
+    <div>
+        <HomeCalendar></HomeCalendar>
+        <NavBar></NavBar>
+        <div class="list">
+            <CardItem></CardItem>
+            <CardItem></CardItem>
+            <CardItem></CardItem>
+            <CardItem></CardItem>
+            <CardItem></CardItem>
+            <CardItem></CardItem>
+            <CardItem></CardItem>
 
-        <CardItem></CardItem>
-        <CardItem></CardItem>
-        <CardItem></CardItem>
-        <CardItem></CardItem>
-        <CardItem></CardItem>
+            <CardItem></CardItem>
+            <CardItem></CardItem>
+            <CardItem></CardItem>
+            <CardItem></CardItem>
+            <CardItem></CardItem>
+        </div>
     </div>
 </template>
 
