@@ -7,6 +7,7 @@ import router from './router';
 const routerHistory = new RouterHistory();
 let isBack = false; // 当前是否是返回操作
 let transitionName = ref<'default' | 'pop' | 'push'>('default'); // 过渡动画名称
+let transitionMode = ref<'in-out' | 'out-in' | 'default'>('default'); // 过渡模式
 
 // 监听路由变化
 window.addEventListener('popstate', () => {
@@ -16,12 +17,12 @@ window.addEventListener('popstate', () => {
 router.beforeEach((to, from, next) => {
     setTimeout(() => {
         if (isBack) {
-            // 如果是返回操作，则不需要记录历史
             transitionName.value = 'pop';
+            transitionMode.value = 'out-in';
             isBack = false;
         } else {
-            // 记录路由历史
             transitionName.value = 'push';
+            transitionMode.value = 'default';
             routerHistory.push(to.path);
         }
         next();
@@ -31,24 +32,46 @@ router.beforeEach((to, from, next) => {
 
 <template>
     <RouterView v-slot="{ Component }">
-        <Transition :name="transitionName">
+        <Transition :name="transitionName" :mode="transitionMode">
             <Component :is="Component" />
         </Transition>
     </RouterView>
 </template>
 
 <style lang="scss">
+$transition: all 0.4s linear;
+@mixin bg {
+    background-color: $bg-color;
+}
+@mixin fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
 .push {
     &-enter-from {
+        @include bg;
+        @include fixed;
         transform: translateY(100px);
-        opacity: 0.2;
+        opacity: 0.5;
     }
     &-enter-active {
-        transition: all 0.3s;
+        @include bg;
+        @include fixed;
+        transition: $transition;
     }
     &-enter-to {
+        @include bg;
+        @include fixed;
         transform: translateY(0);
         opacity: 1;
+    }
+
+    &-leave-active {
+        transition: $transition;
     }
 }
 .pop {
@@ -57,11 +80,11 @@ router.beforeEach((to, from, next) => {
         opacity: 1;
     }
     &-leave-active {
-        transition: all 0.3s;
+        transition: $transition;
     }
     &-leave-to {
         transform: translateY(100px);
-        opacity: 0.2;
+        opacity: 0.5;
     }
 }
 </style>
