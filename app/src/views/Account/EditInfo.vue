@@ -78,11 +78,12 @@
     </div>
 </template>
 <script setup lang="ts">
-import NavigationCmp from '@/components/NavigationCmp.vue';
-import { useUserStore } from '@/stores/user';
 import { ArrowBackIosFilled } from '@vicons/material';
 import { Icon } from '@vicons/utils';
 import { ref } from 'vue';
+
+import { useUserStore } from '@/stores/user';
+import NavigationCmp from '@/components/NavigationCmp.vue';
 
 const userStore = useUserStore();
 const userInfo = userStore.userInfo!;

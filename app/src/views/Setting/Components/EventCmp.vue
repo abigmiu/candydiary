@@ -36,6 +36,7 @@
 import { ref } from 'vue'
 import { ArrowBackIosFilled } from '@vicons/material'
 import { Icon } from '@vicons/utils'
+
 import CustomSwitch from '@/components/CustomSwitch.vue'
 
 const homeEventEntry = ref(false)

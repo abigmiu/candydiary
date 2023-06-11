@@ -1,4 +1,5 @@
 import type { IUserInfo } from "@/types/user";
+
 import { defineStore } from "pinia";
 
 interface UserState {

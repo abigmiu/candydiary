@@ -31,8 +31,9 @@
 <script setup lang="ts">
 import { ArrowBackIosFilled } from '@vicons/material';
 import { Icon } from '@vicons/utils';
-import NavigationCmp from '@/components/NavigationCmp.vue';
 import { useRouter } from 'vue-router';
+
+import NavigationCmp from '@/components/NavigationCmp.vue';
 
 const router = useRouter();
 

@@ -22,6 +22,7 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue'
+
 import NavigationCmp from '@/components/NavigationCmp.vue'
 const list = reactive([
     {

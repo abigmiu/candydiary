@@ -2,3 +2,4 @@ root = true
 
 [*]
 tab_width = 4
+quote_type = single

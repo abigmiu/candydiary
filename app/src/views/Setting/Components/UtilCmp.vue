@@ -41,9 +41,9 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-
 import { LockOutlined, StorageFilled, ArrowBackIosFilled, RefreshFilled } from '@vicons/material'
 import { Icon } from '@vicons/utils'
+
 import CustomSwitch from '@/components/CustomSwitch.vue'
 
 const lock = ref(false)

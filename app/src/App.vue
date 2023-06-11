@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { RouterView } from 'vue-router';
+
 import RouterHistory from './router/history';
 import router from './router';
 
