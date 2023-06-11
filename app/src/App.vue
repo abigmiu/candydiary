@@ -31,11 +31,14 @@ router.beforeEach((to, from, next) => {
 </script>
 
 <template>
-    <RouterView v-slot="{ Component }">
-        <Transition :name="transitionName" :mode="transitionMode">
+    <KeepAlive>
+        <RouterView v-slot="{ Component }">
+        <!-- <Transition :name="transitionName" :mode="transitionMode"> -->
             <Component :is="Component" />
-        </Transition>
+        <!-- </Transition> -->
     </RouterView>
+    </KeepAlive>
+    
 </template>
 
 <style lang="scss">
@@ -56,7 +59,7 @@ $transition: all 0.4s linear;
         @include bg;
         @include fixed;
         transform: translateY(100px);
-        opacity: 0.5;
+        opacity: 0.8;
     }
     &-enter-active {
         @include bg;
@@ -84,7 +87,7 @@ $transition: all 0.4s linear;
     }
     &-leave-to {
         transform: translateY(100px);
-        opacity: 0.5;
+        opacity: 0.8;
     }
 }
 </style>

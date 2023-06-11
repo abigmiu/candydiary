@@ -8,7 +8,7 @@
             <div class="left">头像</div>
             <div class="right flex items-center">
                 <img
-                    src="https://img.alicdn.com/i2/63986519/O1CN01AH1zKP1y1kkNYZE61_!!63986519.jpg"
+                    :src="userInfo.avatar"
                     class="avatar"
                 />
                 <Icon class="arrow">
@@ -20,7 +20,7 @@
         <div class="item" @click="onShowNicknameModal">
             <div class="left">昵称</div>
             <div class="right flex items-center">
-                <span>幽森的森</span>
+                <span>{{ userInfo.nickname }}</span>
                 <Icon class="arrow">
                     <ArrowBackIosFilled></ArrowBackIosFilled>
                 </Icon>
@@ -30,7 +30,7 @@
         <div class="item">
             <div class="left">性别</div>
             <div class="right flex items-center">
-                <span>男</span>
+                <span>{{ userInfo.sex }}</span>
                 <Icon class="arrow">
                     <ArrowBackIosFilled></ArrowBackIosFilled>
                 </Icon>
@@ -40,7 +40,7 @@
         <div class="item">
             <div class="left">生日</div>
             <div class="right flex items-center">
-                <span></span>
+                <span>{{ userInfo.birthday }}</span>
                 <Icon class="arrow">
                     <ArrowBackIosFilled></ArrowBackIosFilled>
                 </Icon>
@@ -50,7 +50,7 @@
         <div class="item">
             <div class="left">签名</div>
             <div class="right flex items-center">
-                <span></span>
+                <span>{{ userInfo.signature }}</span>
                 <Icon class="arrow">
                     <ArrowBackIosFilled></ArrowBackIosFilled>
                 </Icon>
@@ -79,9 +79,14 @@
 </template>
 <script setup lang="ts">
 import NavigationCmp from '@/components/NavigationCmp.vue';
+import { useUserStore } from '@/stores/user';
 import { ArrowBackIosFilled } from '@vicons/material';
 import { Icon } from '@vicons/utils';
 import { ref } from 'vue';
+
+const userStore = useUserStore();
+const userInfo = userStore.userInfo!;
+
 
 // 昵称
 const nickNameVisible = ref(false);
