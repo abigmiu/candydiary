@@ -5,6 +5,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import appConfig from '@/config/index';
+import { LoggerModule } from '@/logger/logger.module';
+import { TransformInterceptor } from '@/interceptors/transform.interceptor';
 
 @Module({
     imports: [
@@ -12,8 +14,15 @@ import appConfig from '@/config/index';
             isGlobal: true,
             load: [appConfig],
         }),
+        LoggerModule,
     ],
     controllers: [AppController],
-    providers: [AppService],
+    providers: [
+        AppService,
+        {
+            provide: 'APP_INTERCEPTOR',
+            useClass: TransformInterceptor,
+        },
+    ],
 })
 export class AppModule {}
