@@ -23,6 +23,11 @@ const config: IAppConfig = {
             },
         },
     },
+    redis: {
+        // @ts-ignore
+        host: 'localhost',
+        port: 6379,
+    },
 };
 
 const loadConfig = () => config;

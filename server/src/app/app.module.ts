@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { RedisModule } from '@liaoliaots/nestjs-redis';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -13,6 +14,16 @@ import { TransformInterceptor } from '@/interceptors/transform.interceptor';
         ConfigModule.forRoot({
             isGlobal: true,
             load: [appConfig],
+        }),
+        RedisModule.forRootAsync({
+            imports: [ConfigModule],
+            inject: [ConfigService],
+            useFactory: (configService: ConfigService) => {
+                const redisConfig = configService.get('redis');
+                return {
+                    config: redisConfig,
+                };
+            },
         }),
         LoggerModule,
     ],
