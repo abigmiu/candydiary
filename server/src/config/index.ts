@@ -28,6 +28,7 @@ const config: IAppConfig = {
         host: 'localhost',
         port: 6379,
     },
+    swaggerSuffix: 'docs',
 };
 
 const loadConfig = () => config;

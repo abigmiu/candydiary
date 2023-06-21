@@ -2,6 +2,7 @@ import type { NestExpressApplication } from '@nestjs/platform-express';
 
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app/app.module';
 // import { LoggerModule } from './logger/logger.module';
@@ -38,9 +39,22 @@ async function bootstrap() {
     const port = configService.get<number>('port');
     const host = configService.get<string>('host');
     app.setGlobalPrefix(apiPrefix);
+
+    // swagger
+    const swaggerSuffix = configService.get<string>('swaggerSuffix');
+    const swaggerOptions = new DocumentBuilder()
+        .setTitle('NestJS API')
+        .setDescription('NestJS API description')
+        .setVersion('1.0')
+        .addBearerAuth()
+        .build();
+    const document = SwaggerModule.createDocument(app, swaggerOptions);
+    SwaggerModule.setup(`${apiPrefix}-${swaggerSuffix}`, app, document);
+
     await app.listen(port, host, async () => {
         const url = await app.getUrl();
         console.log(`Listening at ${url}${apiPrefix}`);
+        console.log(`swagger running at ${url}${apiPrefix}-${swaggerSuffix}`);
     });
 }
 bootstrap();

@@ -14,21 +14,23 @@ module.exports = {
         ecmaVersion: 'latest'
     },
     rules: {
-        "import/order": [
-            "error",
+        'import/order': [
+            'error',
             {
-                "groups": [
-                    "type",
-                    "internal",
-                    "external",
-                    "builtin",
-                    "index",
-                    "sibling",
-                    "parent",
-                    "object",
+                'groups': [
+                    'type',
+                    'internal',
+                    'external',
+                    'builtin',
+                    'index',
+                    'sibling',
+                    'parent',
+                    'object',
                 ],
-                'newlines-between': "always",
+                'newlines-between': 'always',
             }
-        ]
-    }
+        ],
+        'import/named': 'off',
+        'import/no-unresolved': 'off',
+    },
 }

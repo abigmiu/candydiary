@@ -10,5 +10,8 @@ export interface IAppConfig {
     apiPrefix: string;
     /** log4js 配置 */
     log4js: Configuration;
+    /** redis 配置 */
     redis: RedisClientOptions;
+    /** swagger 后置 */
+    swaggerSuffix: string;
 }
