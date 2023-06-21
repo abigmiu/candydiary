@@ -1,5 +1,6 @@
 import type { Configuration } from 'log4js';
 import type { RedisClientOptions } from '@liaoliaots/nestjs-redis';
+import type { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 export interface IAppConfig {
     /** 端口号 */
@@ -14,4 +15,6 @@ export interface IAppConfig {
     redis: RedisClientOptions;
     /** swagger 后置 */
     swaggerSuffix: string;
+    /** 数据库配置 */
+    db: TypeOrmModuleOptions;
 }
