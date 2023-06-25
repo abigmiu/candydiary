@@ -11,6 +11,7 @@ import { AppService } from './app.service';
 import appConfig from '@/config/index';
 import { LoggerModule } from '@/logger/logger.module';
 import { TransformInterceptor } from '@/interceptors/transform.interceptor';
+import modules from '@/modules';
 
 @Module({
     imports: [
@@ -35,6 +36,7 @@ import { TransformInterceptor } from '@/interceptors/transform.interceptor';
                 configService.get<TypeOrmModuleOptions>('db'),
         }),
         LoggerModule,
+        ...modules,
     ],
     controllers: [AppController],
     providers: [
