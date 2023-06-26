@@ -2,6 +2,8 @@ import type { IAppConfig } from 'src/types/appConfig/appConfig';
 
 import { resolve, join } from 'path';
 
+import { REDIS_PREFIX } from '@/constant/redis';
+
 const logPath = resolve(__dirname, '../../logs');
 
 const config: IAppConfig = {
@@ -27,6 +29,8 @@ const config: IAppConfig = {
         // @ts-ignore
         host: 'localhost',
         port: 6379,
+        keyPrefix: REDIS_PREFIX,
+        // namespace: REDIS_PREFIX,
     },
     swaggerSuffix: 'docs',
     db: {
