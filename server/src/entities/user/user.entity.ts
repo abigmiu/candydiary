@@ -6,7 +6,7 @@ export class UserEntity {
     id: number;
 
     /** 头像 */
-    @Column({ name: 'avatar', comment: '头像', nullable: true })
+    @Column({ name: 'avatar', comment: '头像', length: 1000, default: '' })
     avatar: string;
 
     /** 昵称 */
@@ -18,7 +18,7 @@ export class UserEntity {
     sex: number;
 
     /** 生日 */
-    @Column({ name: 'birthday', comment: '生日', nullable: true })
+    @Column({ name: 'birthday', comment: '生日', default: new Date() })
     birthday: Date;
 
     /** 邮箱 */

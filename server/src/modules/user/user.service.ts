@@ -68,4 +68,16 @@ export class UserService {
 
         await this.userRepository.save(user);
     }
+
+    // 用户信息 ====
+
+    /** 获取用户信息 */
+    async getUserInfo(userId: number) {
+        const res = await this.userRepository.findOne({
+            where: {
+                id: userId,
+            },
+        });
+        return res;
+    }
 }

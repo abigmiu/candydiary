@@ -30,8 +30,17 @@ export class UserController {
         return await this.userService.handleGenerateZIPCode();
     }
 
+    /** 注册 */
+    @ApiOperation({ summary: '注册' })
     @Post('register')
     async register(@Body() data: RegisterRequestDto) {
         return this.userService.register(data);
+    }
+
+    /** 获取用户信息 */
+    @ApiOperation({ summary: '获取用户信息' })
+    @Get('info')
+    async getUserInfo() {
+        return this.userService.getUserInfo(1);
     }
 }
