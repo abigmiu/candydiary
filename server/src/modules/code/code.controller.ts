@@ -14,6 +14,6 @@ export class CodeController {
     @Post()
     @ApiOperation({ summary: '发送验证码' })
     onSendCode(@Body() data: CodeRequestDto) {
-        return this.codeService.onSaveCode(data);
+        return this.codeService.handleCodeRequest(data);
     }
 }
