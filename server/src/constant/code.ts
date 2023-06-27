@@ -8,3 +8,7 @@ export const CODE: IOptionRecord = {
         name: '注册',
     },
 };
+/** 验证码 refis 前缀 */
+export const CODE_REDIS = {
+    REGISTER: 'code:register:',
+};

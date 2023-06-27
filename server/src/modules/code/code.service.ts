@@ -4,13 +4,12 @@ import { Redis } from 'ioredis';
 import { Injectable } from '@nestjs/common';
 import { InjectRedis } from '@liaoliaots/nestjs-redis';
 
-import { CODE } from '@/constant/code';
+import { CODE, CODE_REDIS } from '@/constant/code';
 
 @Injectable()
 export class CodeService {
     private codeStrategy = {
         [CODE.REGISTER.value]: {
-            redisPrefix: 'code:register',
             expire: 10 * 60,
             createCode: () => this.createRegisterCode(),
         },
@@ -43,10 +42,15 @@ export class CodeService {
         const code = this.createRegisterCode();
         await this.sendEmailCode('test', code);
         this.redis.set(
-            `${this.codeStrategy[CODE.REGISTER.value].redisPrefix}:${email}`,
+            `${CODE_REDIS.REGISTER}:${email}`,
             code,
             'EX',
             this.codeStrategy[CODE.REGISTER.value].expire,
         );
+    }
+    /** 校验邮箱注册验证码 */
+    async validateRegisterCode(email: string) {
+        const code = await this.redis.get(`${CODE_REDIS.REGISTER}:${email}`);
+        return Boolean(code);
     }
 }

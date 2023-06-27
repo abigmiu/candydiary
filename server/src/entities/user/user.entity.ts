@@ -6,7 +6,7 @@ export class UserEntity {
     id: number;
 
     /** 头像 */
-    @Column({ name: 'avatar', comment: '头像' })
+    @Column({ name: 'avatar', comment: '头像', nullable: true })
     avatar: string;
 
     /** 昵称 */
@@ -14,11 +14,11 @@ export class UserEntity {
     nickname: string;
 
     /** 性别 0:未知 1:男 2:女 */
-    @Column({ name: 'sex', comment: '性别 0:未知 1:男 2:女' })
+    @Column({ name: 'sex', comment: '性别 0:未知 1:男 2:女', default: 0 })
     sex: number;
 
     /** 生日 */
-    @Column({ name: 'birthday', comment: '生日' })
+    @Column({ name: 'birthday', comment: '生日', nullable: true })
     birthday: Date;
 
     /** 邮箱 */
@@ -26,11 +26,11 @@ export class UserEntity {
     email: string;
 
     /** QQ */
-    @Column({ name: 'qq', comment: 'QQ' })
+    @Column({ name: 'qq', comment: 'QQ', nullable: true })
     qq: string;
 
     /** 微博 */
-    @Column({ name: 'weibo', comment: '微博' })
+    @Column({ name: 'weibo', comment: '微博', nullable: true })
     weibo: string;
 
     /** 邮编码 */

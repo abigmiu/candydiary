@@ -1,9 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsEmail } from 'class-validator';
 
 /** 邮箱注册 */
-export class RegisterByEmailRequestDto {
+export class RegisterRequestDto {
     /** 邮箱 */
     @ApiProperty({ description: '邮箱', example: 'abc@abc.com' })
+    @IsEmail()
     email: string;
 
     /** 密码 */

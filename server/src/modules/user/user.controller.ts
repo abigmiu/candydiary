@@ -9,6 +9,8 @@ import {
 
 import { UserService } from './user.service';
 
+import { RegisterRequestDto } from '@/dto/user/register.dto';
+
 @ApiTags('用户 user')
 @Controller('user')
 export class UserController {
@@ -24,8 +26,12 @@ export class UserController {
         },
         description: '生成的邮编码',
     })
-    // @ApiExcludeEndpoint()
     async generateZIPCode() {
         return await this.userService.handleGenerateZIPCode();
+    }
+
+    @Post('register')
+    async register(@Body() data: RegisterRequestDto) {
+        return this.userService.register(data);
     }
 }

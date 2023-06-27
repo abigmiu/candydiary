@@ -6,5 +6,6 @@ import { CodeController } from './code.controller';
 @Module({
     controllers: [CodeController],
     providers: [CodeService],
+    exports: [CodeService],
 })
 export class CodeModule {}
