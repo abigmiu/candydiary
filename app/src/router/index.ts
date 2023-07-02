@@ -27,6 +27,11 @@ const router = createRouter({
             path: '/combo',
             name: 'Combo',
             component: () => import('@/views/Combo/ComboPage.vue')
+        },
+        {
+            path: '/login',
+            name: 'Login',
+            component: () => import('@/views/Account/LoginAndRegister.vue')
         }
     ]
 });
