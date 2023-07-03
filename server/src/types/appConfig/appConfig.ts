@@ -17,4 +17,6 @@ export interface IAppConfig {
     swaggerSuffix: string;
     /** 数据库配置 */
     db: TypeOrmModuleOptions;
+    /** jwt 密钥 */
+    jwtSecret: string;
 }

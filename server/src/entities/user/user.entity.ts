@@ -1,9 +1,22 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    PrimaryColumn,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('user')
 export class UserEntity {
     @PrimaryGeneratedColumn({ name: 'id', comment: '主键' })
     id: number;
+
+    @CreateDateColumn({ name: 'createAt', comment: '创建时间' })
+    createAt: Date;
+
+    @UpdateDateColumn({ name: 'updateAt', comment: '更新时间' })
+    updateAt: Date;
 
     /** 头像 */
     @Column({ name: 'avatar', comment: '头像', length: 1000, default: '' })
@@ -18,7 +31,7 @@ export class UserEntity {
     sex: number;
 
     /** 生日 */
-    @Column({ name: 'birthday', comment: '生日', default: new Date() })
+    @Column({ name: 'birthday', comment: '生日', default: () => 'now()' })
     birthday: Date;
 
     /** 邮箱 */

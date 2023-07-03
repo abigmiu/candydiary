@@ -4,6 +4,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RedisModule } from '@liaoliaots/nestjs-redis';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { JwtService } from '@nestjs/jwt';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -41,6 +42,7 @@ import modules from '@/modules';
     controllers: [AppController],
     providers: [
         AppService,
+        JwtService,
         {
             provide: 'APP_INTERCEPTOR',
             useClass: TransformInterceptor,

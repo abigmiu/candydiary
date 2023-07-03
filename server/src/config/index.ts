@@ -45,6 +45,7 @@ const config: IAppConfig = {
         synchronize: true,
         logging: false,
     },
+    jwtSecret: '123456',
 };
 
 const loadConfig = () => config;
