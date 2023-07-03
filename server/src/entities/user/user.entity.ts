@@ -2,10 +2,14 @@ import {
     Column,
     CreateDateColumn,
     Entity,
+    OneToOne,
     PrimaryColumn,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
+    JoinColumn,
 } from 'typeorm';
+
+import { UserConfigEntity } from './userConfig.entity';
 
 @Entity('user')
 export class UserEntity {
@@ -49,4 +53,8 @@ export class UserEntity {
     /** 邮编码 */
     @PrimaryColumn({ name: 'zipcode', comment: '邮编码' })
     zipcode: string;
+
+    @OneToOne(() => UserConfigEntity, (userConfig) => userConfig.user)
+    @JoinColumn()
+    config: UserConfigEntity;
 }
