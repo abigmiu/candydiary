@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { CodeService } from '../code/code.service';
+import { AuthService } from '../auth/auth.service';
 
 import { UserEntity } from '@/entities/user/user.entity';
 import { REGISTER_CODE_EXPIRED, REGISTER_EXIST_EMAIL } from '@/constant/response';
@@ -15,6 +16,7 @@ export class UserService {
         @InjectRepository(UserEntity)
         private readonly userRepository: Repository<UserEntity>,
         private readonly codeService: CodeService,
+        private readonly authService: AuthService,
     ) {}
 
     // 邮编码处理 ==========
@@ -79,5 +81,12 @@ export class UserService {
             },
         });
         return res;
+    }
+
+    // 登录 =====
+
+    /** 登录 */
+    async login() {
+        return this.authService.createToken({ id: 1 });
     }
 }

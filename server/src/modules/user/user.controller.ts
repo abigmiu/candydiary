@@ -9,12 +9,17 @@ import {
 
 import { UserService } from './user.service';
 
+import { AuthService } from '../auth/auth.service';
+
 import { RegisterRequestDto } from '@/dto/user/register.dto';
 
 @ApiTags('用户 user')
 @Controller('user')
 export class UserController {
-    constructor(private readonly userService: UserService) {}
+    constructor(
+        private readonly userService: UserService,
+        private readonly authService: AuthService,
+    ) {}
 
     @Get('zipcode')
     @ApiOperation({ summary: '生成邮编码' })
@@ -35,6 +40,13 @@ export class UserController {
     @Post('register')
     async register(@Body() data: RegisterRequestDto) {
         return this.userService.register(data);
+    }
+
+    /** 登录 */
+    @ApiOperation({ summary: '登录' })
+    @Post('login')
+    async login() {
+        return this.userService.login();
     }
 
     /** 获取用户信息 */
