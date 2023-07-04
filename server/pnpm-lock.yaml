@@ -29,6 +29,7 @@ specifiers:
   jest: 29.5.0
   log4js: ^6.9.1
   mysql2: ^3.4.0
+  passport: ^0.6.0
   passport-jwt: ^4.0.1
   prettier: ^2.3.2
   reflect-metadata: ^0.1.13
@@ -48,7 +49,7 @@ dependencies:
   '@nestjs/common': 9.4.3_j3td4gnlgk75ora6o6suo62byy
   '@nestjs/core': 9.4.3_c4fgdp752ib7dsgrlnt7fswfce
   '@nestjs/jwt': 10.1.0_@nestjs+common@9.4.3
-  '@nestjs/passport': 10.0.0_@nestjs+common@9.4.3
+  '@nestjs/passport': 10.0.0_swdehgqxw2nt4jhhnqbb6yp354
   '@nestjs/platform-express': 9.4.3_vw2vky2jc6gkm6gj7lzrgmojyi
   '@nestjs/swagger': 7.0.4_ff6xh7k6m3kcxhzayktinvhdx4
   '@nestjs/typeorm': 10.0.0_nktyjm3hkn2boz7s6l2p266t2u
@@ -57,6 +58,7 @@ dependencies:
   ioredis: 5.3.2
   log4js: 6.9.1
   mysql2: 3.4.1
+  passport: 0.6.0
   passport-jwt: 4.0.1
   reflect-metadata: 0.1.13
   rxjs: 7.8.1
@@ -1017,13 +1019,14 @@ packages:
       reflect-metadata: 0.1.13
     dev: false
 
-  /@nestjs/passport/10.0.0_@nestjs+common@9.4.3:
+  /@nestjs/passport/10.0.0_swdehgqxw2nt4jhhnqbb6yp354:
     resolution: {integrity: sha512-IlKKc6M7JOe+4dBbW6gZsXBSD05ZYgwfGf3GJhgCmUGYVqffpDdALQSS6JftnExrE+12rACoEmHkzYwKAGVK0Q==}
     peerDependencies:
       '@nestjs/common': ^8.0.0 || ^9.0.0 || ^10.0.0
       passport: ^0.4.0 || ^0.5.0 || ^0.6.0
     dependencies:
       '@nestjs/common': 9.4.3_j3td4gnlgk75ora6o6suo62byy
+      passport: 0.6.0
     dev: false
 
   /@nestjs/platform-express/9.4.3_vw2vky2jc6gkm6gj7lzrgmojyi:
@@ -4722,6 +4725,15 @@ packages:
     engines: {node: '>= 0.4.0'}
     dev: false
 
+  /passport/0.6.0:
+    resolution: {integrity: sha512-0fe+p3ZnrWRW74fe8+SvCyf4a3Pb2/h7gFkQ8yTJpAO50gDzlfjZUZTO1k5Eg9kUct22OxHLqDZoKUWRHOh9ug==}
+    engines: {node: '>= 0.4.0'}
+    dependencies:
+      passport-strategy: 1.0.0
+      pause: 0.0.1
+      utils-merge: 1.0.1
+    dev: false
+
   /path-exists/4.0.0:
     resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==}
     engines: {node: '>=8'}
@@ -4759,6 +4771,10 @@ packages:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
     dev: true
+
+  /pause/0.0.1:
+    resolution: {integrity: sha512-KG8UEiEVkR3wGEb4m5yZkVCzigAD+cVEJck2CzYZO37ZGJfctvVptVO192MwrtPhzONn6go8ylnOdMhKqi4nfg==}
+    dev: false
 
   /picocolors/1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
