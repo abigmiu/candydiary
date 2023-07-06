@@ -3,6 +3,7 @@ import type { NestExpressApplication } from '@nestjs/platform-express';
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as cookieParser from 'cookie-parser';
 
 import { AppModule } from './app/app.module';
 // import { LoggerModule } from './logger/logger.module';
@@ -22,6 +23,7 @@ async function bootstrap() {
     // app.useLogger(app.get(LoggerModule));
 
     // 全局注册
+    app.use(cookieParser());
     app.useGlobalPipes(new ValidationPipe());
     // app.useGlobalInterceptors(new TransformInterceptor());
     app.useGlobalFilters(

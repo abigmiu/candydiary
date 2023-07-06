@@ -10,8 +10,8 @@ export class AuthService {
     constructor(
         @InjectRedis()
         private readonly redis: Redis,
-        private jwtService: JwtService,
-    ) {}
+        private readonly jwtService: JwtService,
+    ) { }
 
     createToken(data: any) {
         const token = this.jwtService.sign(data);
