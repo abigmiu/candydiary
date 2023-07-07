@@ -42,6 +42,9 @@ export class UserEntity {
     @Column({ name: 'email', comment: '邮箱' })
     email: string;
 
+    @Column({ name: 'password', comment: '密码' })
+    password: string;
+
     /** QQ */
     @Column({ name: 'qq', comment: 'QQ', nullable: true })
     qq: string;

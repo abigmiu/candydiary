@@ -12,6 +12,7 @@ import { UserService } from './user.service';
 import { AuthService } from '../auth/auth.service';
 
 import { RegisterRequestDto } from '@/dto/user/register.dto';
+import { LoginDto } from '@/dto/user/login.dto';
 
 @ApiTags('用户 user')
 @Controller('user')
@@ -45,8 +46,8 @@ export class UserController {
     /** 登录 */
     @ApiOperation({ summary: '登录' })
     @Post('login')
-    async login() {
-        return this.userService.login();
+    async login(@Body() data: LoginDto) {
+        return this.userService.login(data);
     }
 
     /** 获取用户信息 */

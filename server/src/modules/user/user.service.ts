@@ -1,4 +1,5 @@
 import type { RegisterRequestDto } from '@/dto/user/register.dto';
+import type { LoginDto } from '@/dto/user/login.dto';
 
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -8,7 +9,7 @@ import { CodeService } from '../code/code.service';
 import { AuthService } from '../auth/auth.service';
 
 import { UserEntity } from '@/entities/user/user.entity';
-import { REGISTER_CODE_EXPIRED, REGISTER_EXIST_EMAIL } from '@/constant/response';
+import { LOGIN_FAIL, REGISTER_CODE_EXPIRED, REGISTER_EXIST_EMAIL } from '@/constant/response';
 
 @Injectable()
 export class UserService {
@@ -67,6 +68,7 @@ export class UserService {
         user.email = data.email;
         user.nickname = '用户' + Math.random().toString(36).slice(-6).toUpperCase();
         user.zipcode = ZIPCode;
+        user.password = data.password;
 
         await this.userRepository.save(user);
     }
@@ -86,7 +88,22 @@ export class UserService {
     // 登录 =====
 
     /** 登录 */
-    async login() {
-        return this.authService.createToken({ id: 1 });
+    async login(data: LoginDto) {
+        const user = await this.userRepository.findOne({
+            where: {
+                email: data.email,
+                password: data.password,
+            }
+        })
+
+        if (!user) {
+            throw new BadRequestException(LOGIN_FAIL);
+        }
+
+        const token = await this.authService.createToken({ id: user.id });
+        return {
+            ...user,
+            token,
+        }
     }
 }
