@@ -1,4 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import type { ITokenData } from '@/types/auth/auth.type';
+
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
 import {
     ApiExcludeEndpoint,
     ApiHideProperty,
@@ -6,6 +8,7 @@ import {
     ApiResponse,
     ApiTags,
 } from '@nestjs/swagger';
+import { Request } from 'express';
 
 import { UserService } from './user.service';
 
@@ -53,7 +56,10 @@ export class UserController {
     /** 获取用户信息 */
     @ApiOperation({ summary: '获取用户信息' })
     @Get('info')
-    async getUserInfo() {
+    async getUserInfo(@Req() request: Request) {
+        // @ts-ignore
+        const user = (request.user as ITokenData);
+        console.log(user);
         return this.userService.getUserInfo(1);
     }
 }

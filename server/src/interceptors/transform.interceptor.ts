@@ -34,7 +34,7 @@ export class TransformInterceptor implements NestInterceptor {
         if (request.method.toUpperCase() === 'POST' && response.statusCode === HttpStatus.CREATED) {
             response.status(HttpStatus.OK);
         }
-        if (request.method.toUpperCase() === 'GET' && response.statusCode == HttpStatus.OK) {
+        if (request.method.toUpperCase() === 'GET' && response.statusCode == HttpStatus.NOT_MODIFIED) {
             response.status(HttpStatus.OK);
         }
 
