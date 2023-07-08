@@ -1,9 +1,7 @@
 import type { ITokenData } from '@/types/auth/auth.type';
 
-import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Req } from '@nestjs/common';
 import {
-    ApiExcludeEndpoint,
-    ApiHideProperty,
     ApiOperation,
     ApiResponse,
     ApiTags,
@@ -23,7 +21,7 @@ export class UserController {
     constructor(
         private readonly userService: UserService,
         private readonly authService: AuthService,
-    ) {}
+    ) { }
 
     @Get('zipcode')
     @ApiOperation({ summary: '生成邮编码' })
@@ -57,9 +55,8 @@ export class UserController {
     @ApiOperation({ summary: '获取用户信息' })
     @Get('info')
     async getUserInfo(@Req() request: Request) {
-        // @ts-ignore
         const user = (request.user as ITokenData);
         console.log(user);
-        return this.userService.getUserInfo(1);
+        return this.userService.getUserInfo(user.id);
     }
 }
