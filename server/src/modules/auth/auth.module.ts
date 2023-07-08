@@ -6,6 +6,8 @@ import { JwtStrategy } from 'src/strategy/jwt.strategy';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 
+import { REDIS_TOKEN_EXPIRE } from '@/constant/redis';
+
 @Module({
     imports: [
         JwtModule.registerAsync({
@@ -15,14 +17,14 @@ import { AuthService } from './auth.service';
                 return {
                     secret: configService.get('jwtSecret'),
                     signOptions: {
-                        expiresIn: '200h',
+                        expiresIn: REDIS_TOKEN_EXPIRE,
                     },
                 };
             },
         }),
     ],
     controllers: [AuthController],
-    providers: [AuthService, JwtStrategy, JwtService],
+    providers: [AuthService, JwtStrategy],
     exports: [AuthService],
 })
 export class AuthModule { }

@@ -16,6 +16,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     }
 
     validate(data: ITokenData) {
+        console.log('jwt.strategy.ts validate data: ', data)
         return data;
     }
 }
