@@ -8,9 +8,12 @@
         "baseUrl": "./",
         "paths": {
             "@/*": [
-                "./src/*"
+                "src/*"
             ]
-        }
+        },
+        "types": [
+            "pinia-plugin-persist"
+        ]
     },
     "include": [
         "env.d.ts",

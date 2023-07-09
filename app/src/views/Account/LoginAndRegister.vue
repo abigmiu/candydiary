@@ -12,17 +12,17 @@
             <div class="content-box" :style="contentMoveStyle">
                 <div class="content-form">
                     <div class="form-input-wrapper">
-                        <input type="text" class="form-input--inner" placeholder="输入你的注册邮箱" />
+                        <input type="text" class="form-input--inner" placeholder="输入你的注册邮箱" v-model="loginForm.email" />
                     </div>
                     <div class="form-input-wrapper">
-                        <input type="text" class="form-input--inner" placeholder="输入你的注册密码" />
+                        <input type="text" class="form-input--inner" placeholder="输入你的注册密码" v-model="loginForm.password" />
                     </div>
 
                     <div class="flex justify-end">
                         <span class="forget">忘记密码？</span>
                     </div>
 
-                    <button class="action-btn">登录</button>
+                    <button class="action-btn" @click="onLogin">登录</button>
                 </div>
                 <div class="content-form">
                     <div class="form-input-wrapper">
@@ -39,7 +39,7 @@
                             v-model.trim="registerForm.password" />
                     </div>
 
-                    <button class="action-btn">注册</button>
+                    <button class="action-btn" @click="onRegister">注册</button>
                 </div>
             </div>
 
@@ -52,13 +52,16 @@
 </template>
 
 <script setup lang="ts">
-import type { IRegister } from '@/types/auth';
+import type { ILogin, IRegister } from '@/types/auth';
 
 import { computed, ref, reactive } from 'vue';
 
+import { useUserStore } from '@/stores/user'
 import { emailReg } from '@/constant/regex'
 import { CODE_TYPE_KEYS } from '@/constant/code'
 import { baseAjax } from '@/utils/axios'
+
+const userStore = useUserStore()
 
 // --- 注册表单
 const registerForm = reactive<IRegister>({
@@ -102,6 +105,30 @@ const sendCode = async () => {
     }, 1000);
 }
 
+const onRegister = async () => {
+    await baseAjax.post('user/register', {
+        ...registerForm
+    })
+}
+
+// === 登录
+
+const loginForm = reactive<ILogin>({
+    email: '',
+    password: '',
+})
+const onLogin = async () => {
+    const res = await baseAjax.post('user/login', {
+        ...loginForm
+    })
+    const token = res.data.data.token;
+
+    // window.localStorage.setItem('userInfo', JSON.stringify(res.data.data));
+    // window.localStorage.setItem('token', token);
+
+    userStore.setUserInfo(res.data.data);
+    userStore.setToken(res.data.data.token);
+}
 
 // === 切换类型
 const currentType = ref<'login' | 'register'>('login');

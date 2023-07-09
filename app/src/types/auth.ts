@@ -1,4 +1,3 @@
-import { CODE_TYPE_KEYS } from '@/constant/code';
 
 /** 注册 */
 export interface IRegister {
@@ -11,4 +10,9 @@ export interface IRegister {
 export interface IRegisterCode {
     email: string;
     type: number;
+}
+
+export interface ILogin {
+    email: string;
+    password: string;
 }
