@@ -26,14 +26,17 @@
                 </div>
                 <div class="content-form">
                     <div class="form-input-wrapper">
-                        <input type="text" class="form-input--inner" placeholder="输入你的邮箱" />
+                        <input type="text" class="form-input--inner" placeholder="输入你的邮箱"
+                            v-model.trim="registerForm.email" />
                     </div>
                     <div class="form-input-wrapper relative">
-                        <input type="text" class="form-input--inner" placeholder="输入收到的验证码" />
-                        <button class="code-btn">发验证码到邮箱</button>
+                        <input type="text" class="form-input--inner" placeholder="输入收到的验证码"
+                            v-model.trim="registerForm.code" />
+                        <button class="code-btn" :disabled="isSendCode" @click="sendCode">{{ codeText }}</button>
                     </div>
                     <div class="form-input-wrapper">
-                        <input type="text" class="form-input--inner" placeholder="输入6-32位密码" />
+                        <input type="text" class="form-input--inner" placeholder="输入6-32位密码"
+                            v-model.trim="registerForm.password" />
                     </div>
 
                     <button class="action-btn">注册</button>
@@ -49,8 +52,58 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import type { IRegister } from '@/types/auth';
 
+import { computed, ref, reactive } from 'vue';
+
+import { emailReg } from '@/constant/regex'
+import { CODE_TYPE_KEYS } from '@/constant/code'
+import { baseAjax } from '@/utils/axios'
+
+// --- 注册表单
+const registerForm = reactive<IRegister>({
+    email: '',
+    password: '',
+    code: ''
+})
+const codeText = ref('发送验证码');
+const isSendCode = ref(false);
+const codeCountDown = 60;
+const sendCode = async () => {
+    if (isSendCode.value) return;
+    if (!emailReg.test(registerForm.email)) {
+        console.log('邮箱格式不正确');
+        return;
+    }
+
+    try {
+        await baseAjax.post('/code', {
+            email: registerForm.email,
+            type: CODE_TYPE_KEYS.REGISTER
+        });
+    } catch (e) {
+        console.log(e);
+        return;
+    }
+
+
+    isSendCode.value = true;
+    let count = codeCountDown;
+    codeText.value = `${count}s`;
+    let timer: number | null = window.setInterval(() => {
+        count--;
+        codeText.value = `${count}s`;
+        if (count === 0) {
+            clearInterval(timer!);
+            timer = null;
+            codeText.value = '发送验证码';
+            isSendCode.value = false;
+        }
+    }, 1000);
+}
+
+
+// === 切换类型
 const currentType = ref<'login' | 'register'>('login');
 const changeType = (type: 'login' | 'register') => {
     currentType.value = type;
@@ -72,6 +125,11 @@ const moveXPercent = computed(() => {
     return percent;
 })
 const contentMoveStyle = computed(() => {
+    if (moveXPercent.value > 0) {
+        return {
+            transform: `translateX(${-((100 - moveXPercent.value) / 2)}%)`
+        }
+    }
     return {
         transform: `translateX(${moveXPercent.value / 2}%)`
     }

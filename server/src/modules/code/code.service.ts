@@ -18,7 +18,7 @@ export class CodeService {
     constructor(
         @InjectRedis()
         private readonly redis: Redis,
-    ) {}
+    ) { }
 
     async handleCodeRequest(data: CodeRequestDto) {
         if (data.type === CODE.REGISTER.value) {
@@ -42,7 +42,7 @@ export class CodeService {
         const code = this.createRegisterCode();
         await this.sendEmailCode('test', code);
         this.redis.set(
-            `${CODE_REDIS.REGISTER}:${email}`,
+            `${CODE_REDIS.REGISTER}${email}`,
             code,
             'EX',
             this.codeStrategy[CODE.REGISTER.value].expire,
