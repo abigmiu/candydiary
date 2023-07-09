@@ -66,9 +66,9 @@ const moveX = ref(0)
 const innerWidth = window.innerWidth;
 const moveXPercent = computed(() => {
     let percent = (moveX.value / innerWidth) * 100;
+
     if (percent < -100) percent = -100;
     if (percent > 100) percent = 100;
-
     return percent;
 })
 const contentMoveStyle = computed(() => {
@@ -77,6 +77,11 @@ const contentMoveStyle = computed(() => {
     }
 })
 const cursorMoveStyle = computed(() => {
+    if (moveXPercent.value > 0) {
+        return {
+            transform: `translateX(${-moveXPercent.value + 100}%)`
+        }
+    }
     return {
         transform: `translateX(${-moveXPercent.value}%)`
     }
@@ -101,6 +106,7 @@ const onTouchMove = (e: TouchEvent) => {
     if (isLeft && moveX.value === -innerWidth) return;
 
     moveX.value = diffX;
+
 }
 /** 滑动结束 */
 const onTouchEnd = () => {
@@ -125,6 +131,7 @@ const onTouchEnd = () => {
         }
     }
 }
+
 </script>
 
 <style lang="scss" scoped>
