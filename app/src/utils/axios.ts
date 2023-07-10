@@ -1,10 +1,31 @@
-import axios from 'axios';
+import type { IResponse } from '@/types/http';
 
-const instance = axios.create({
-    baseURL: 'http://localhost:3000/api',
-    timeout: 5 * 1000,
-});
+import axios, { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse } from 'axios';
 
-export {
-    instance as baseAjax
+class Request {
+    private instance: AxiosInstance;
+    constructor() {
+        this.instance = axios.create({
+            baseURL: 'http://localhost:3000/api',
+            timeout: 5 * 1000,
+        });
+
+        this.instance.interceptors.request.use((config) => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                config.headers['Authorization'] = `Bearer ${token}`;
+            }
+            return config;
+        });
+        // this.instance.interceptors.response.use((response: AxiosResponse<IResponse, any>) => {
+        //     return response.data;
+        // });
+    }
+
+    public request<T>(config: AxiosRequestConfig) {
+        return this.instance.request<T>(config);
+    }
 }
+
+export const baseAjax = new Request();
+

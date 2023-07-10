@@ -5,4 +5,5 @@ export interface IUserInfo {
     birthday: string;
     signature: string;
     avatar: string;
+    zipcode: string;
 }
