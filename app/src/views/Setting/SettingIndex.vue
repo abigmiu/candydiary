@@ -26,13 +26,13 @@
     </div>
 </template>
 <script setup lang="ts">
-import CloseCmp from './Components/CloseCmp.vue'
-import UserInfo from './Components/UserInfo.vue'
-import UsageCmp from './Components/UsageCmp.vue'
-import UtilCmp from './Components/UtilCmp.vue'
-import EventCmp from './Components/EventCmp.vue'
-import HomeConfig from './Components/HomeConfig.vue'
-import OtherCmp from './Components/OtherCmp.vue'
+import CloseCmp from './Components/CloseCmp.vue';
+import UserInfo from './Components/UserInfo.vue';
+import UsageCmp from './Components/UsageCmp.vue';
+import UtilCmp from './Components/UtilCmp.vue';
+import EventCmp from './Components/EventCmp.vue';
+import HomeConfig from './Components/HomeConfig.vue';
+import OtherCmp from './Components/OtherCmp.vue';
 </script>
 <style lang="scss">
 @import '@/assets/styles/setting.scss';

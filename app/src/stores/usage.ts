@@ -17,5 +17,12 @@ export const useUsageStore = defineStore('usage', {
         setUsage(data: IUserUsage) {
             this.$state.storage = data;
         }
+    },
+    persist: {
+        strategies: [
+            {
+                storage: localStorage
+            }
+        ]
     }
 });

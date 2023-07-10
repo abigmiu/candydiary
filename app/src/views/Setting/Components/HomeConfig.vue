@@ -27,7 +27,7 @@
                 <span class="item-text">日记卡片显示完整文字</span>
             </div>
             <div class="right">
-                <CustomSwitch v-model="editEventEntry"></CustomSwitch>
+                <CustomSwitch v-model="userConfig.diaryCardFullText"></CustomSwitch>
             </div>
         </div>
         <div class="item">
@@ -35,7 +35,7 @@
                 <span class="item-text">那年今日</span>
             </div>
             <div class="right">
-                <CustomSwitch v-model="editEventEntry"></CustomSwitch>
+                <CustomSwitch v-model="userConfig.todayInHistory"></CustomSwitch>
             </div>
         </div>
         <div class="item">
@@ -43,7 +43,7 @@
                 <span class="item-text">八度空间</span>
             </div>
             <div class="right">
-                <CustomSwitch v-model="editEventEntry"></CustomSwitch>
+                <CustomSwitch v-model="userConfig.baduSpace"></CustomSwitch>
             </div>
         </div>
         <div class="item">
@@ -51,7 +51,7 @@
                 <span class="item-text">时空邮局</span>
             </div>
             <div class="right">
-                <CustomSwitch v-model="editEventEntry"></CustomSwitch>
+                <CustomSwitch v-model="userConfig.timeSpacePostOffice"></CustomSwitch>
             </div>
         </div>
         <div class="item">
@@ -59,7 +59,7 @@
                 <span class="item-text">默认显示日历</span>
             </div>
             <div class="right">
-                <CustomSwitch v-model="editEventEntry"></CustomSwitch>
+                <CustomSwitch v-model="userConfig.defaultShowCalendar"></CustomSwitch>
             </div>
         </div>
         <div class="item">
@@ -67,19 +67,22 @@
                 <span class="item-text">日历背景气泡</span>
             </div>
             <div class="right">
-                <CustomSwitch v-model="editEventEntry"></CustomSwitch>
+                <CustomSwitch v-model="userConfig.calendarBackgroundBubble"></CustomSwitch>
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { ArrowBackIosFilled } from '@vicons/material'
-import { Icon } from '@vicons/utils'
+import { ref } from 'vue';
+import { ArrowBackIosFilled } from '@vicons/material';
+import { Icon } from '@vicons/utils';
 
-import CustomSwitch from '@/components/CustomSwitch.vue'
+import CustomSwitch from '@/components/CustomSwitch.vue';
+import { useUserStore } from '@/stores/user';
 
-const homeEventEntry = ref(false)
-const editEventEntry = ref(false)
+const userStore = useUserStore();
+const userConfig = userStore.config;
+const homeEventEntry = ref(false);
+const editEventEntry = ref(false);
 </script>

@@ -8,7 +8,7 @@
                 <span class="item-text">指纹应用锁</span>
             </div>
             <div class="right">
-                <CustomSwitch v-model="lock"></CustomSwitch>
+                <CustomSwitch v-model="userConfig.fingerprintAppLock"></CustomSwitch>
             </div>
         </div>
         <div class="item">
@@ -40,11 +40,13 @@
     </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
-import { LockOutlined, StorageFilled, ArrowBackIosFilled, RefreshFilled } from '@vicons/material'
-import { Icon } from '@vicons/utils'
+import { ref } from 'vue';
+import { LockOutlined, StorageFilled, ArrowBackIosFilled, RefreshFilled } from '@vicons/material';
+import { Icon } from '@vicons/utils';
 
-import CustomSwitch from '@/components/CustomSwitch.vue'
+import CustomSwitch from '@/components/CustomSwitch.vue';
+import { useUserStore } from '@/stores/user';
 
-const lock = ref(false)
+const userStore = useUserStore();
+const userConfig = userStore.config;
 </script>

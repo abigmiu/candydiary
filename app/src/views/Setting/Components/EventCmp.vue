@@ -17,7 +17,7 @@
                     <span class="item-text">首页事件入口</span>
                 </div>
                 <div class="right">
-                    <CustomSwitch v-model="homeEventEntry"></CustomSwitch>
+                    <CustomSwitch v-model="userConfig.homeEventEntry"></CustomSwitch>
                 </div>
             </div>
             <div class="item">
@@ -25,7 +25,7 @@
                     <span class="item-text">日记编辑页事件入口</span>
                 </div>
                 <div class="right">
-                    <CustomSwitch v-model="editEventEntry"></CustomSwitch>
+                    <CustomSwitch v-model="userConfig.diaryEditEventEntry"></CustomSwitch>
                 </div>
             </div>
         </div>
@@ -33,12 +33,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { ArrowBackIosFilled } from '@vicons/material'
-import { Icon } from '@vicons/utils'
+import { ref } from 'vue';
+import { ArrowBackIosFilled } from '@vicons/material';
+import { Icon } from '@vicons/utils';
 
-import CustomSwitch from '@/components/CustomSwitch.vue'
+import CustomSwitch from '@/components/CustomSwitch.vue';
+import { useUserStore } from '@/stores/user';
 
-const homeEventEntry = ref(false)
-const editEventEntry = ref(false)
+const userStore = useUserStore();
+const userConfig = userStore.config;
+
+const homeEventEntry = ref(false);
+const editEventEntry = ref(false);
 </script>
