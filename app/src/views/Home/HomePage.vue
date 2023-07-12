@@ -6,7 +6,7 @@
             <CardItem></CardItem>
         </div>
         <button class="write-button">
-            写日记
+            <SvgIcon name="write" /><span>写日记</span>
         </button>
     </div>
 </template>
@@ -15,6 +15,8 @@
 import NavBar from './Components/NavBar.vue';
 import CardItem from './Components/CardItem.vue';
 import HomeCalendar from './Components/HomeCalendar.vue';
+
+import SvgIcon from '@/components/SvgIcon.vue';
 </script>
 
 <style lang="scss" scoped>
@@ -33,5 +35,9 @@ import HomeCalendar from './Components/HomeCalendar.vue';
     outline: none;
     color: white;
     background-color: $light-color;
+
+    span {
+        margin-left: 5px;
+    }
 }
 </style>

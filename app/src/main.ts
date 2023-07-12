@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import piniaPersist from 'pinia-plugin-persist'
+import piniaPersist from 'pinia-plugin-persist';
 
 import App from './App.vue';
 import router from './router/index';
@@ -8,11 +8,12 @@ import router from './router/index';
 
 import './assets/styles/main.scss';
 import 'virtual:uno.css';
+import 'virtual:svg-icons-register';
 
 const app = createApp(App);
 
 const pinia = createPinia();
-pinia.use(piniaPersist)
+pinia.use(piniaPersist);
 app.use(pinia);
 app.use(router);
 
