@@ -4,13 +4,10 @@
 
     <div class="setting-wrapper edit-info">
         <!-- 头像 -->
-        <div class="item">
+        <div class="item" @click="onChooseAvatar">
             <div class="left">头像</div>
             <div class="right flex items-center">
-                <img
-                    :src="userInfo.avatar"
-                    class="avatar"
-                />
+                <img :src="userInfo.avatar" class="avatar" />
                 <Icon class="arrow">
                     <ArrowBackIosFilled></ArrowBackIosFilled>
                 </Icon>
@@ -61,14 +58,8 @@
     <div class="modal-mask flex-center" v-if="nickNameVisible">
         <div class="modal-card">
             <div class="title">昵称：</div>
-            <input
-                @input="onNicknameInput"
-                type="text"
-                class="input-area"
-                v-model.trim="nicknameForInput"
-                :maxlength="nicknameLimitLen"
-                autofocus="true"
-            />
+            <input @input="onNicknameInput" type="text" class="input-area" v-model.trim="nicknameForInput"
+                :maxlength="nicknameLimitLen" autofocus="true" />
             <div class="text-count">{{ nicknameLen }}/{{ nicknameLimitLen }}</div>
             <div class="flex justify-end">
                 <div class="action-item" @click="hiddenNicknameModal">取消</div>
@@ -76,11 +67,17 @@
             </div>
         </div>
     </div>
+
+    <Teleport to="body">
+        <AvatarChoose ref="avatarChooseRef"></AvatarChoose>
+    </Teleport>
 </template>
 <script setup lang="ts">
 import { ArrowBackIosFilled } from '@vicons/material';
 import { Icon } from '@vicons/utils';
 import { ref } from 'vue';
+
+import AvatarChoose from './Components/AvatarChoose.vue';
 
 import { useUserStore } from '@/stores/user';
 import NavigationCmp from '@/components/NavigationCmp.vue';
@@ -106,6 +103,11 @@ const confirmNickname = () => {
 };
 const onShowNicknameModal = () => {
     nickNameVisible.value = true;
+};
+
+const avatarChooseRef = ref<null | typeof AvatarChoose>(null);
+const onChooseAvatar = () => {
+    avatarChooseRef.value.onWakeFile();
 };
 </script>
 <style lang="scss" scoped>

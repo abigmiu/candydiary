@@ -1,12 +1,11 @@
 import type { IUserInfo } from '@/types/user';
 import type { IUserConfig } from '@/types/userConfig';
 
-
 import { defineStore } from 'pinia';
 interface UserState {
     userInfo: nullable<IUserInfo>;
     token: nullable<string>;
-    config: IUserConfig
+    config: IUserConfig;
 }
 
 export const useUserStore = defineStore('user', {
@@ -23,7 +22,7 @@ export const useUserStore = defineStore('user', {
             baduSpace: false,
             timeSpacePostOffice: false,
             defaultShowCalendar: false,
-            calendarBackgroundBubble: false,
+            calendarBackgroundBubble: false
         }
     }),
     getters: {
@@ -32,8 +31,13 @@ export const useUserStore = defineStore('user', {
         }
     },
     actions: {
-        setUserInfo(userInfo: IUserInfo) {
-            this.$state.userInfo = userInfo;
+        setUserInfo(userInfo: Partial<IUserInfo>) {
+            const newUserInfo = {
+                ...this.$state.userInfo,
+                ...userInfo
+            } as IUserInfo;
+            console.log(newUserInfo);
+            this.$state.userInfo = newUserInfo;
         },
         setToken(token: string) {
             this.$state.token = token;
@@ -51,8 +55,10 @@ export const useUserStore = defineStore('user', {
     },
     persist: {
         enabled: true,
-        strategies: [{
-            storage: localStorage
-        }]
+        strategies: [
+            {
+                storage: localStorage
+            }
+        ]
     }
 });

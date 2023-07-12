@@ -23,7 +23,7 @@ export class UserEntity {
     updateAt: Date;
 
     /** 头像 */
-    @Column({ name: 'avatar', comment: '头像', length: 1000, default: '' })
+    @Column({ name: 'avatar', comment: '头像', type: 'text', })
     avatar: string;
 
     /** 昵称 */

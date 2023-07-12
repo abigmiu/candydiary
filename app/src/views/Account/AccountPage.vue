@@ -14,8 +14,8 @@
         <div>
             <div class="title">账号绑定</div>
             <div class="item">
-                <div class="left">邮箱</div>
-                <div class="right">去绑定</div>
+                <div class="left">邮箱{{ userInfo.email ? '：' + userInfo.email : '' }}</div>
+                <div class="right">{{ userInfo.email ? '已绑定' : '去绑定' }}</div>
             </div>
             <div class="item">
                 <div class="left">QQ</div>
@@ -34,8 +34,12 @@ import { Icon } from '@vicons/utils';
 import { useRouter } from 'vue-router';
 
 import NavigationCmp from '@/components/NavigationCmp.vue';
+import { useUserStore } from '@/stores/user';
 
 const router = useRouter();
+
+const userStore = useUserStore();
+const userInfo = userStore.userInfo;
 
 const onJumpEditInfo = () => {
     router.push({

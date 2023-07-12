@@ -1,6 +1,6 @@
 import type { ITokenData } from '@/types/auth/auth.type';
 
-import { Controller, Get, Post, Body, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Req, Patch } from '@nestjs/common';
 import {
     ApiOperation,
     ApiResponse,
@@ -14,6 +14,7 @@ import { AuthService } from '../auth/auth.service';
 
 import { RegisterRequestDto } from '@/dto/user/register.dto';
 import { LoginDto } from '@/dto/user/login.dto';
+import { UpdateUserDto } from '@/dto/user/update-user.dto';
 
 @ApiTags('用户 user')
 @Controller('user')
@@ -58,5 +59,14 @@ export class UserController {
         const user = (request.user as ITokenData);
         console.log(user);
         return this.userService.getUserInfo(user.id);
+    }
+
+    /** 更新用户信息 */
+    @ApiOperation({ summary: '更新用户信息' })
+    @Patch()
+    async update(@Req() request: Request, @Body() data: UpdateUserDto) {
+        const user = (request.user as ITokenData);
+        console.log(user);
+        return this.userService.update(user.id, data);
     }
 }

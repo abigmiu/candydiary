@@ -1,5 +1,6 @@
 import type { RegisterRequestDto } from '@/dto/user/register.dto';
 import type { LoginDto } from '@/dto/user/login.dto';
+import type { UpdateUserDto } from '@/dto/user/update-user.dto';
 
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -18,7 +19,7 @@ export class UserService {
         private readonly userRepository: Repository<UserEntity>,
         private readonly codeService: CodeService,
         private readonly authService: AuthService,
-    ) {}
+    ) { }
 
     // 邮编码处理 ==========
     /** 检查数据库里面是否有相同的邮编 */
@@ -105,5 +106,20 @@ export class UserService {
             ...user,
             token,
         }
+    }
+
+    /** 更新用户信息 */
+    async update(userId: number, data: UpdateUserDto) {
+        const user = await this.userRepository.findOne({
+            where: {
+                id: userId
+            }
+        })
+
+        if (data.avatar) {
+            user.avatar = data.avatar
+        }
+
+        await this.userRepository.save(user)
     }
 }
